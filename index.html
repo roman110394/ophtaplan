@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Схема закапывания глазных капель</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+    
+    :root {
+      --blue: #2563eb;
+      --blue-light: #dbeafe;
+      --blue-mid: #93c5fd;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --bg: #f8fafc;
+      --white: #fff;
+      --danger: #ef4444;
+      --success: #10b981;
+      --radius: 12px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 1px 3px 0 rgb(15 23 42 / 0.08), 0 1px 2px -1px rgb(15 23 42 / 0.06);
+      --shadow: 0 10px 15px -3px rgb(15 23 42 / 0.1), 0 4px 6px -4px rgb(15 23 42 / 0.1);
+    }
+    
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      background: var(--bg);
+      min-height: 100vh;
+      line-height: 1.5
+    }
+    
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.02em
+    }
+    
+    h2 {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em
+    }
+    
+    h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 8px
+    }
+    
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--white);
+      color: var(--text);
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: all .2s cubic-bezier(0.4, 0, 0.2, 1)
+    }
+    
+    input:focus,
+    select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15)
+    }
+    
+    input[type=checkbox] {
+      width: auto;
+      cursor: pointer
+    }
+    
+    label.lbl {
+      font-size: 13px;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 18px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--white);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 14px;
+      font-family: inherit;
+      font-weight: 600;
+      transition: all .2s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-sm)
+    }
+    
+    .btn:hover {
+      background: #f1f5f9;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow)
+    }
+    
+    .btn:active {
+      transform: scale(0.97)
+    }
+    
+    .btn:disabled {
+      opacity: .5;
+      cursor: not-allowed
+    }
+    
+    .btn-primary {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+      box-shadow: 0 4px 6px -1px rgb(37 99 235 / 0.3)
+    }
+    
+    .btn-primary:hover {
+      background: #1e40af;
+      box-shadow: 0 10px 15px -3px rgb(37 99 235 / 0.4)
+    }
+    
+    .btn-sm {
+      padding: 5px 12px;
+      font-size: 13px
+    }
+    
+    .btn-danger {
+      border-color: #fecaca;
+      color: var(--danger)
+    }
+    
+    .btn-danger:hover {
+      background: #fef2f2
+    }
+    
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow)
+    }
+    
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      padding: 2px 9px;
+      border-radius: 9999px;
+      font-weight: 600;
+      letter-spacing: -0.02em
+    }
+    
+    .tag-cat {
+      background: #dbeafe;
+      color: #1e40af
+    }
+    
+    .abbr-badge {
+      display: inline-block;
+      font-family: 'SF Mono', monospace;
+      font-weight: 700;
+      font-size: 13px;
+      background: var(--blue-light);
+      color: var(--blue);
+      padding: 3px 9px;
+      border-radius: 6px;
+      min-width: 36px;
+      text-align: center
+    }
+    
+    .error {
+      color: var(--danger);
+      font-size: 13px;
+      margin-top: 6px
+    }
+    
+    .muted {
+      color: var(--muted)
+    }
+    
+    .sep {
+      height: 1px;
+      background: var(--border);
+      margin: 14px 0
+    }
+    
+    #app {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px 16px
+    }
+    
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 20px;
+      align-items: start
+    }
+    
+    @media(max-width:680px) {
+      .layout {
+        grid-template-columns: 1fr
+      }
+    }
+    
+    #suggestions {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      z-index: 100;
+      margin-top: 4px;
+      overflow: hidden;
+      display: none;
+      box-shadow: 0 10px 15px -3px rgb(15 23 42 / 0.15)
+    }
+    
+    .sug-item {
+      padding: 10px 14px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background .15s
+    }
+    
+    .sug-item:hover {
+      background: #f8fafc
+    }
+    
+    .med-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #f1f5f9
+    }
+    
+    .med-row:last-child {
+      border-bottom: none
+    }
+    
+    .phase-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 13px
+    }
+    
+    .phase-row input,
+    .phase-row select {
+      font-size: 13px
+    }
+    
+    .taper-box {
+      background: #f8fafc;
+      border-radius: var(--radius);
+      padding: 14px;
+      margin-top: 10px
+    }
+    
+    .checklist-wrap {
+      overflow-x: auto
+    }
+    
+    table.checklist {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      table-layout: fixed
+    }
+    
+    table.checklist th {
+      background: var(--blue-light);
+      color: var(--blue);
+      font-weight: 600;
+      font-size: 12.5px;
+      padding: 10px 8px;
+      border: 1px solid #bae6fd;
+      text-align: center
+    }
+    
+    table.checklist th.day-th {
+      width: 52px
+    }
+    
+    table.checklist td {
+      padding: 9px;
+      border: 1px solid #f1f5f9;
+      vertical-align: middle;
+      text-align: center
+    }
+    
+    table.checklist tr:nth-child(even) td {
+      background: #f8fafc
+    }
+    
+    .cell-entry {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      margin: 3px
+    }
+    
+    .checkbox-sq {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #64748b;
+      border-radius: 4px;
+      flex-shrink: 0
+    }
+    
+    .dash {
+      color: #cbd5e1;
+      font-size: 15px
+    }
+    
+    .legend-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px
+    }
+    
+    .legend-cat h4 {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin-bottom: 8px
+    }
+    
+    .legend-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px
+    }
+    
+    .tabs {
+      display: flex;
+      gap: 8px
+    }
+    
+    .tab {
+      padding: 8px 20px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--white);
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: 600;
+      font-family: inherit;
+      transition: all .2s cubic-bezier(0.4, 0, 0.2, 1)
+    }
+    
+    .tab.active {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue)
+    }
+    
+    .tab:not(.active):hover {
+      background: #f8fafc
+    }
+    
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999
+    }
+    
+    .modal-content {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 440px;
+      margin: 20px;
+      box-shadow: var(--shadow);
+      overflow: hidden
+    }
+    
+    @media print {
+      body {
+        background: white;
+        font-size: 11pt
+      }
+      .no-print {
+        display: none!important
+      }
+      #app {
+        padding: 0;
+        max-width: 100%
+      }
+      .checklist-wrap {
+        overflow: visible
+      }
+      table.checklist {
+        font-size: 10.5pt
+      }
+      .checkbox-sq {
+        border: 2px solid #334155!important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact
+      }
+      .abbr-badge {
+        background: #dbeafe!important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact
+      }
+      table.checklist th {
+        background: #dbeafe!important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact
+      }
+      .card {
+        border: 1px solid #e2e8f0!important;
+        page-break-inside: avoid;
+        box-shadow: none
+      }
+    }
+    
+    .session-indicator {
+      font-size: 12px;
+      color: #10b981;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 4px
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script>
+    'use strict';
+    // ── Данные ──────────────────────────────────────────────────────────
+    const BUILTIN_MEDS = [
+      // Антибиотики
+      {
+        name: 'Тобрекс',
+        cat: 'Антибиотик',
+        hint: 'Т'
+      }, {
+        name: 'Вигамокс',
+        cat: 'Антибиотик',
+        hint: 'В'
+      }, {
+        name: 'Флоксал',
+        cat: 'Антибиотик',
+        hint: 'Ф'
+      }, {
+        name: 'Ципрофлоксацин',
+        cat: 'Антибиотик',
+        hint: 'Ц'
+      }, {
+        name: 'Левомицетин',
+        cat: 'Антибиотик',
+        hint: 'Л'
+      }, {
+        name: 'Сульфацил натрия',
+        cat: 'Антибиотик',
+        hint: 'Сн'
+      }, {
+        name: 'Левофлоксацин',
+        cat: 'Антибиотик',
+        hint: 'Лф'
+      }, {
+        name: 'Моксифлоксацин',
+        cat: 'Антибиотик',
+        hint: 'М'
+      },
+      // НПВС (противовоспалительные нестероидные)
+      {
+        name: 'Неванак',
+        cat: 'НПВС',
+        hint: 'Н'
+      }, {
+        name: 'Диклофенак',
+        cat: 'НПВС',
+        hint: 'Д'
+      }, {
+        name: 'Кеторолак',
+        cat: 'НПВС',
+        hint: 'К'
+      }, {
+        name: 'Бромфенак',
+        cat: 'НПВС',
+        hint: 'Б'
+      },
+      // Стероиды
+      {
+        name: 'Дексаметазон',
+        cat: 'Стероид',
+        hint: 'Дкс'
+      }, {
+        name: 'Максидекс',
+        cat: 'Стероид',
+        hint: 'Мкс'
+      }, {
+        name: 'Преднизолон',
+        cat: 'Стероид',
+        hint: 'Пр'
+      }, {
+        name: 'Флуорометолон',
+        cat: 'Стероид',
+        hint: 'Фл'
+      }, {
+        name: 'Лотепреднол',
+        cat: 'Стероид',
+        hint: 'Л'
+      },
+      // Антисептики
+      {
+        name: 'Окомистин',
+        cat: 'Антисептик',
+        hint: 'О'
+      }, {
+        name: 'Пиклоксидин',
+        cat: 'Антисептик',
+        hint: 'П'
+      }, {
+        name: 'Мирамистин',
+        cat: 'Антисептик',
+        hint: 'М'
+      },
+      // Искусственная слеза и увлажнители
+      {
+        name: 'Систейн',
+        cat: 'Искусств. слеза',
+        hint: 'С'
+      }, {
+        name: 'Хило-Комод',
+        cat: 'Искусств. слеза',
+        hint: 'Х'
+      }, {
+        name: 'Визин',
+        cat: 'Искусств. слеза',
+        hint: 'Вз'
+      }, {
+        name: 'Артелак',
+        cat: 'Искусств. слеза',
+        hint: 'А'
+      }, {
+        name: 'Дефислез',
+        cat: 'Искусств. слеза',
+        hint: 'Дф'
+      }, {
+        name: 'Гипромеллоза',
+        cat: 'Искусств. слеза',
+        hint: 'Г'
+      },
+      // Гели для роговицы (заживляющие)
+      {
+        name: 'Корнерегель',
+        cat: 'Гель для роговицы',
+        hint: 'Кг'
+      }, {
+        name: 'Офтагель',
+        cat: 'Гель',
+        hint: 'Ог'
+      }, {
+        name: 'Видисик',
+        cat: 'Гель',
+        hint: 'Вг'
+      },
+      // Мидриатики (расширение зрачка)
+      {
+        name: 'Атропин',
+        cat: 'Мидриатик',
+        hint: 'Ат'
+      }, {
+        name: 'Тропикамид',
+        cat: 'Мидриатик',
+        hint: 'Тр'
+      }, {
+        name: 'Циклопентолат',
+        cat: 'Мидриатик',
+        hint: 'Ц'
+      },
+      // Глаукома
+      {
+        name: 'Тимолол',
+        cat: 'Глаукома',
+        hint: 'Тм'
+      }, {
+        name: 'Латанопрост',
+        cat: 'Глаукома',
+        hint: 'Л'
+      }, {
+        name: 'Бримонидин',
+        cat: 'Глаукома',
+        hint: 'Бр'
+      }, {
+        name: 'Дорзоламид',
+        cat: 'Глаукома',
+        hint: 'Др'
+      }, {
+        name: 'Бримонидин+Тимолол',
+        cat: 'Глаукома',
+        hint: 'Бт'
+      }, {
+        name: 'Травопрост',
+        cat: 'Глаукома',
+        hint: 'Трв'
+      },
+      // Антиаллергические
+      {
+        name: 'Олопатадин',
+        cat: 'Антиаллергик',
+        hint: 'Ол'
+      }, {
+        name: 'Кромогексал',
+        cat: 'Антиаллергик',
+        hint: 'Кр'
+      }, {
+        name: 'Лекролин',
+        cat: 'Антиаллергик',
+        hint: 'Лк'
+      }, {
+        name: 'Азеластин',
+        cat: 'Антиаллергик',
+        hint: 'Аз'
+      },
+      // Регенерирующие / метаболические
+      {
+        name: 'Тауфон',
+        cat: 'Регенерирующие',
+        hint: 'Тф'
+      }, {
+        name: 'Таурин',
+        cat: 'Регенерирующие',
+        hint: 'Тн'
+      }, {
+        name: 'Эмоксипин',
+        cat: 'Регенерирующие',
+        hint: 'Э'
+      }, {
+        name: 'Солкосерил',
+        cat: 'Регенерирующие',
+        hint: 'Сл'
+      },
+    ];
+    const BUILTIN_PRESETS = [{
+      label: 'После операции на катаракте',
+      meds: [{
+        name: 'Вигамокс',
+        eye: 'both',
+        freq: 4,
+        dur: 7,
+        taper: false,
+        phases: []
+      }, {
+        name: 'Неванак',
+        eye: 'both',
+        freq: 3,
+        dur: 14,
+        taper: false,
+        phases: []
+      }, {
+        name: 'Дексаметазон',
+        eye: 'both',
+        freq: 3,
+        dur: 21,
+        taper: true,
+        phases: [{
+          d: 7,
+          f: 3
+        }, {
+          d: 7,
+          f: 2
+        }, {
+          d: 7,
+          f: 1
+        }]
+      }, ]
+    }, {
+      label: 'Халязион',
+      meds: [{
+        name: 'Тобрекс',
+        eye: 'both',
+        freq: 4,
+        dur: 7,
+        taper: false,
+        phases: []
+      }, {
+        name: 'Дексаметазон',
+        eye: 'both',
+        freq: 2,
+        dur: 10,
+        taper: false,
+        phases: []
+      }, ]
+    }, {
+      label: 'Синдром сухого глаза',
+      meds: [{
+        name: 'Систейн',
+        eye: 'both',
+        freq: 4,
+        dur: 30,
+        taper: false,
+        phases: []
+      }, {
+        name: 'Хило-Комод',
+        eye: 'both',
+        freq: 3,
+        dur: 30,
+        taper: false,
+        phases: []
+      }, ]
+    }, {
+      label: 'Конъюнктивит',
+      meds: [{
+        name: 'Флоксал',
+        eye: 'both',
+        freq: 4,
+        dur: 7,
+        taper: false,
+        phases: []
+      }, {
+        name: 'Окомистин',
+        eye: 'both',
+        freq: 4,
+        dur: 7,
+        taper: false,
+        phases: []
+      }, ]
+    }, ];
+    // ── Состояние ────────────────────────────────────────────────────────
+    let CUSTOM_MEDS = [];
+    let CUSTOM_PRESETS = [];
+    let S = {
+      view: 'builder',
+      meds: [],
+      patient: '',
+      startDate: '',
+      phases: [{
+        d: 7,
+        f: 3
+      }, {
+        d: 7,
+        f: 2
+      }, {
+        d: 7,
+        f: 1
+      }],
+      selectedMed: null,
+    };
+
+    function todayStr() {
+      return new Date().toISOString().slice(0, 10);
+    }
+    const CUSTOM_MEDS_KEY = 'customEyeMeds_v2';
+    const CUSTOM_PRESETS_KEY = 'customEyePresets_v2';
+    const SESSION_KEY = 'currentEyeScheme_v2';
+
+    function initCustomData() {
+      const savedMeds = localStorage.getItem(CUSTOM_MEDS_KEY);
+      if (savedMeds) CUSTOM_MEDS = JSON.parse(savedMeds);
+      const savedPresets = localStorage.getItem(CUSTOM_PRESETS_KEY);
+      if (savedPresets) CUSTOM_PRESETS = JSON.parse(savedPresets);
+    }
+
+    function saveCustomData() {
+      localStorage.setItem(CUSTOM_MEDS_KEY, JSON.stringify(CUSTOM_MEDS));
+      localStorage.setItem(CUSTOM_PRESETS_KEY, JSON.stringify(CUSTOM_PRESETS));
+    }
+
+    function saveSession() {
+      const data = {
+        meds: S.meds,
+        patient: S.patient,
+        startDate: S.startDate,
+        view: S.view
+      };
+      localStorage.setItem(SESSION_KEY, JSON.stringify(data));
+    }
+
+    function loadSession() {
+      const saved = localStorage.getItem(SESSION_KEY);
+      if (saved) {
+        const data = JSON.parse(saved);
+        S.meds = data.meds || [];
+        S.patient = data.patient || '';
+        S.startDate = data.startDate || todayStr();
+        if (data.view) S.view = data.view;
+      } else {
+        S.startDate = todayStr();
+      }
+    }
+    // ── Утилиты ──────────────────────────────────────────────────────────
+    function fuzzy(str, q) {
+      const s = str.toLowerCase(),
+        qt = q.toLowerCase().trim();
+      if (!qt) return false;
+      if (s.includes(qt)) return true;
+      let qi = 0;
+      for (let i = 0; i < s.length && qi < qt.length; i++)
+        if (s[i] === qt[qi]) qi++;
+      return qi === qt.length;
+    }
+
+    function buildAbbrs(meds) {
+      const used = new Set();
+      const allMeds = getAllMeds();
+      return meds.map(m => {
+        const md = allMeds.find(d => d.name === m.name);
+        const hint = md ? md.hint : m.name[0];
+        const candidates = [hint.toUpperCase(), m.name.slice(0, 2).toUpperCase(), m.name.slice(0, 3).toUpperCase(), m.name.slice(0, 4).toUpperCase()];
+        for (const c of candidates) {
+          if (!used.has(c)) {
+            used.add(c);
+            return c;
+          }
+        }
+        let i = 1;
+        const base = m.name.slice(0, 2).toUpperCase();
+        while (used.has(base + i)) i++;
+        used.add(base + i);
+        return base + i;
+      });
+    }
+
+    function getAllMeds() {
+      return [...BUILTIN_MEDS, ...CUSTOM_MEDS];
+    }
+
+    function getAllPresets() {
+      return [...BUILTIN_PRESETS, ...CUSTOM_PRESETS];
+    }
+
+    function slotsByFreq(freq) {
+      if (freq === 1) return ['После пробуждения'];
+      if (freq === 2) return ['После пробуждения', 'Перед сном'];
+      if (freq === 3) return ['После пробуждения', 'Днём', 'Перед сном'];
+      if (freq === 4) return ['После пробуждения', 'Днём', 'Вечером', 'Перед сном'];
+      if (freq === 5) return ['После пробуждения', 'Днём', 'После обеда', 'Вечером', 'Перед сном'];
+      return ['После пробуждения', 'Днём', 'После обеда', 'Вечером', 'Перед сном', 'Ночью (по необходимости)'];
+    }
+
+    function allSlots(meds) {
+      let max = 1;
+      meds.forEach(m => {
+        if (m.taper) m.phases.forEach(p => {
+          if (p.f > max) max = p.f;
+        });
+        else if (m.freq > max) max = m.freq;
+      });
+      return slotsByFreq(max);
+    }
+
+    function buildGrid(meds, abbrs) {
+      let maxDay = 0;
+      meds.forEach(m => {
+        const d = m.taper ? m.phases.reduce((s, p) => s + p.d, 0) : m.dur;
+        if (d > maxDay) maxDay = d;
+      });
+      const slots = allSlots(meds);
+      const rows = [];
+      for (let day = 1; day <= maxDay; day++) {
+        const cells = {};
+        slots.forEach(s => cells[s] = []);
+        meds.forEach((med, mi) => {
+          const abbr = abbrs[mi];
+          const eSuffix = med.eye === 'both' ? '' : med.eye === 'right' ? ' (ПГ)' : ' (ЛГ)';
+          let freq, active = false;
+          if (med.taper) {
+            let cum = 0;
+            for (const ph of med.phases) {
+              if (day > cum && day <= cum + ph.d) {
+                freq = ph.f;
+                active = true;
+                break;
+              }
+              cum += ph.d;
+            }
+          } else {
+            active = day <= med.dur;
+            freq = med.freq;
+          }
+          if (!active) return;
+          slotsByFreq(freq).forEach(s => {
+            if (cells[s]) cells[s].push(abbr + eSuffix);
+          });
+        });
+        rows.push({
+          day,
+          cells
+        });
+      }
+      return {
+        rows,
+        slots
+      };
+    }
+    // ── Модальное окно ───────────────────────────────────────────────────
+    let currentModal = null;
+
+    function showModal(title, contentHTML, onConfirm) {
+      if (currentModal) currentModal.remove();
+      const backdrop = document.createElement('div');
+      backdrop.className = 'modal-backdrop';
+      const box = document.createElement('div');
+      box.className = 'modal-content card';
+      box.style.padding = '24px';
+      box.innerHTML = `<h3 style="margin-bottom:16px">${title}</h3>${contentHTML}`;
+      const footer = document.createElement('div');
+      footer.style.cssText = 'display:flex;gap:12px;justify-content:flex-end;margin-top:24px';
+      const cancelBtn = document.createElement('button');
+      cancelBtn.className = 'btn';
+      cancelBtn.textContent = 'Отмена';
+      cancelBtn.onclick = () => {
+        backdrop.remove();currentModal = null;
+      };
+      const confirmBtn = document.createElement('button');
+      confirmBtn.className = 'btn btn-primary';
+      confirmBtn.textContent = 'Сохранить';
+      confirmBtn.onclick = () => {
+        onConfirm();
+        backdrop.remove();
+        currentModal = null;
+        render();
+      };
+      footer.append(cancelBtn, confirmBtn);
+      box.appendChild(footer);
+      backdrop.appendChild(box);
+      document.body.appendChild(backdrop);
+      currentModal = backdrop;
+    }
+    // ── Создание элемента ────────────────────────────────────────────────
+    function el(tag, cls = '', attrs = {}) {
+      const e = document.createElement(tag);
+      if (cls) e.className = cls;
+      Object.entries(attrs).forEach(([k, v]) => {
+        if (k === 'style') e.style.cssText = v;
+        else e.setAttribute(k, v);
+      });
+      return e;
+    }
+
+    function fmtDate(str) {
+      if (!str) return '';
+      const [y, m, d] = str.split('-');
+      return `${d}.${m}.${y}`;
+    }
+    // ── Удаление кастомного пресета ──────────────────────────────────────
+    function deleteCustomPreset(idx) {
+      if (confirm('Удалить этот план лечения?')) {
+        CUSTOM_PRESETS.splice(idx, 1);
+        saveCustomData();
+        render();
+      }
+    }
+    // ── Добавление нового препарата ──────────────────────────────────────
+    function showAddMedModal() {
+      const formHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div><label class="lbl">Название препарата</label><input id="new-med-name" placeholder="Например: Новые капли"></div>
+      <div><label class="lbl">Категория</label>
+        <select id="new-med-cat">
+          <option value="Антибиотик">Антибиотик</option>
+          <option value="НПВС">НПВС</option>
+          <option value="Стероид">Стероид</option>
+          <option value="Антисептик">Антисептик</option>
+          <option value="Искусств. слеза">Искусств. слеза</option>
+          <option value="Мидриатик">Мидриатик</option>
+          <option value="Глаукома">Глаукома</option>
+          <option value="Прочее">Прочее</option>
+        </select>
+      </div>
+    </div>
+    <div style="margin-top:16px"><label class="lbl">Короткая подсказка (для аббревиатуры)</label><input id="new-med-hint" placeholder="Например: НК" maxlength="5">
+    <p style="font-size:12px;color:var(--muted);margin-top:4px">Можно оставить пустым — система подберёт автоматически</p></div>`;
+      showModal('Новый препарат', formHTML, () => {
+        const name = document.getElementById('new-med-name').value.trim();
+        if (!name) return alert('Введите название препарата');
+        const cat = document.getElementById('new-med-cat').value;
+        let hint = (document.getElementById('new-med-hint').value || name.slice(0, 2)).toUpperCase().trim();
+        if (getAllMeds().some(m => m.name.toLowerCase() === name.toLowerCase())) return alert('Препарат с таким названием уже существует');
+        CUSTOM_MEDS.push({
+          name,
+          cat,
+          hint
+        });
+        saveCustomData();
+      });
+    }
+
+    function addNewMedFromSearch() {
+      const suggestBox = document.getElementById('suggestions');
+      if (suggestBox) suggestBox.style.display = 'none';
+      showAddMedModal();
+    }
+    // ── Рендеринг ────────────────────────────────────────────────────────
+    function render() {
+      const app = document.getElementById('app');
+      app.innerHTML = '';
+      const abbrs = buildAbbrs(S.meds);
+      // Шапка
+      const hdr = el('div', 'no-print', {
+        style: 'display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;padding-bottom:18px;border-bottom:2px solid var(--border);flex-wrap:wrap;gap:16px'
+      });
+      const title = el('div');
+      title.innerHTML = `
+  <h1 style="font-size:24px;font-weight:700;letter-spacing:-0.03em;margin:0;color:var(--text)">
+    Схема закапывания капель
+  </h1>
+`;
+      const tabsContainer = el('div', '', {
+        style: 'display:flex;gap:8px;margin-left:auto'
+      });
+      const t1 = el('button', 'tab' + (S.view === 'builder' ? ' active' : ''));
+      t1.textContent = 'Составить схему';
+      t1.onclick = () => {
+        S.view = 'builder';saveSession();render();
+      };
+      const t2 = el('button', 'tab' + (S.view === 'checklist' ? ' active' : ''));
+      t2.textContent = `Таблица${S.meds.length > 0 ? ' (' + S.meds.length + ')' : ''}`;
+      if (S.meds.length === 0) t2.disabled = true;
+      t2.onclick = () => {
+        if (S.meds.length > 0) {
+          S.view = 'checklist';
+          saveSession();
+          render();
+        }
+      };
+      tabsContainer.append(t1, t2);
+      hdr.append(title, tabsContainer);
+      app.appendChild(hdr);
+      if (S.view === 'builder') renderBuilder(app);
+      else renderChecklist(app);
+      saveSession();
+      patInp.onblur = () => saveSession();
+      dateInp.onblur = () => saveSession();
+    }
+
+    function renderBuilder(app) {
+      const layout = el('div', 'layout no-print');
+      // Левая колонка
+      const left = el('div', '', {
+        style: 'display:flex;flex-direction:column;gap:20px'
+      });
+      // Форма добавления
+      const formCard = el('div', 'card');
+      formCard.innerHTML = `<h3 style="display:flex;align-items:center;gap:8px"><span>Добавить препарат</span></h3>`;
+      const searchWrap = el('div', '', {
+        style: 'position:relative;margin-bottom:12px'
+      });
+      const searchInput = el('input');
+      searchInput.placeholder = 'Поиск препарата (напр. деска, тобр, систе...)';
+      searchInput.autocomplete = 'off';
+      searchInput.value = S._searchQuery || '';
+      const suggestBox = el('div', '', {
+        id: 'suggestions'
+      });
+      searchWrap.append(searchInput, suggestBox);
+      formCard.appendChild(searchWrap);
+      searchInput.oninput = () => {
+        S._searchQuery = searchInput.value;
+        const q = searchInput.value.trim();
+        if (!q) {
+          suggestBox.style.display = 'none';
+          return;
+        }
+        const res = getAllMeds().filter(m => fuzzy(m.name, q)).slice(0, 8);
+        suggestBox.innerHTML = '';
+        if (!res.length) {
+          suggestBox.innerHTML = `<div style="padding:12px 14px;color:var(--muted);font-size:13px">Ничего не найдено<br><button onclick="addNewMedFromSearch()" class="btn btn-sm" style="margin-top:8px;width:100%">+ Добавить как новый препарат</button></div>`;
+          suggestBox.style.display = 'block';
+          return;
+        }
+        res.forEach(m => {
+          const item = el('div', 'sug-item');
+          item.innerHTML = `<span style="font-weight:600">${m.name}</span><span class="tag tag-cat">${m.cat}</span>`;
+          item.onclick = () => {
+            S.selectedMed = m;
+            S._searchQuery = m.name;
+            searchInput.value = m.name;
+            suggestBox.style.display = 'none';
+            renderConfig();
+          };
+          suggestBox.appendChild(item);
+        });
+        suggestBox.style.display = 'block';
+      };
+      document.addEventListener('click', e => {
+        if (!searchWrap.contains(e.target)) suggestBox.style.display = 'none';
+      }, {
+        capture: true,
+        once: true
+      });
+      const configArea = el('div', '', {
+        id: 'cfg-area'
+      });
+      formCard.appendChild(configArea);
+      left.appendChild(formCard);
+
+      function renderConfig() {
+        configArea.innerHTML = '';
+        if (!S.selectedMed) return;
+        const grid3 = el('div', '', {
+          style: 'display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px'
+        });
+        // Глаз
+        const eyeDiv = el('div');
+        const eyeLbl = el('label', 'lbl');
+        eyeLbl.textContent = 'Глаз';
+        const eyeSel = el('select');
+        [
+          ['both', 'Оба глаза'],
+          ['right', 'Правый (ПГ)'],
+          ['left', 'Левый (ЛГ)']
+        ].forEach(([v, t]) => {
+          const o = el('option');o.value = v;o.textContent = t;
+          if ((S._cfgEye || 'both') === v) o.selected = true;
+          eyeSel.appendChild(o);
+        });
+        eyeSel.onchange = () => {
+          S._cfgEye = eyeSel.value;
+        };
+        eyeDiv.append(eyeLbl, eyeSel);
+        grid3.appendChild(eyeDiv);
+        // Частота
+        const freqDiv = el('div');
+        const freqLbl = el('label', 'lbl');
+        freqLbl.textContent = 'Раз в день';
+        const freqSel = el('select', '', (S._cfgTaper ? {
+          disabled: true
+        } : {}));
+        [1, 2, 3, 4, 5, 6].forEach(n => {
+          const o = el('option');o.value = n;o.textContent = n + '×/день';
+          if ((S._cfgFreq || 3) === n) o.selected = true;
+          freqSel.appendChild(o);
+        });
+        freqSel.onchange = () => {
+          S._cfgFreq = +freqSel.value;
+        };
+        freqDiv.append(freqLbl, freqSel);
+        grid3.appendChild(freqDiv);
+        // Длительность
+        const durDiv = el('div');
+        const durLbl = el('label', 'lbl');
+        durLbl.textContent = 'Дней';
+        const durInput = el('input', '', (S._cfgTaper ? {
+          disabled: true
+        } : {}));
+        durInput.type = 'number';
+        durInput.min = 1;
+        durInput.max = 90;
+        durInput.value = S._cfgDur || 14;
+        durInput.oninput = () => {
+          S._cfgDur = +durInput.value;
+        };
+        durDiv.append(durLbl, durInput);
+        grid3.appendChild(durDiv);
+        configArea.appendChild(grid3);
+        const taperLabel = el('label', '', {
+          style: 'display:flex;align-items:center;gap:8px;cursor:pointer;font-size:14px;margin-bottom:12px'
+        });
+        const taperChk = el('input');
+        taperChk.type = 'checkbox';
+        taperChk.style.width = '20px';
+        taperChk.style.height = '20px';
+        if (S._cfgTaper) taperChk.checked = true;
+        taperChk.onchange = () => {
+          S._cfgTaper = taperChk.checked;renderConfig();
+        };
+        taperLabel.append(taperChk, ' Схема постепенной отмены');
+        configArea.appendChild(taperLabel);
+        if (S._cfgTaper) {
+          const taperBox = el('div', 'taper-box');
+          taperBox.innerHTML = `<div style="font-size:13px;color:var(--muted);margin-bottom:10px">Укажите фазы отмены:</div>`;
+          const phasesList = el('div', '', {
+            id: 'phases-list'
+          });
+          taperBox.appendChild(phasesList);
+
+          function renderPhases() {
+            phasesList.innerHTML = '';
+            S.phases.forEach((ph, i) => {
+              const row = el('div', 'phase-row');
+              const lbl = el('span', 'muted', {
+                style: 'min-width:64px'
+              });
+              lbl.textContent = 'Фаза ' + (i + 1);
+              const dInp = el('input');dInp.type = 'number';dInp.min = 1;dInp.max = 60;dInp.value = ph.d;dInp.style.width = '58px';
+              dInp.oninput = e => {
+                S.phases[i].d = Math.max(1, parseInt(e.target.value) || 1);
+              };
+              const muted1 = el('span', 'muted');muted1.textContent = 'дн. ×';
+              const fSel = el('select');fSel.style.width = '110px';
+              [1, 2, 3, 4, 5, 6].forEach(n => {
+                const o = el('option');o.value = n;o.textContent = n + '×/день';
+                if (ph.f === n) o.selected = true;
+                fSel.appendChild(o);
+              });
+              fSel.onchange = e => S.phases[i].f = +e.target.value;
+              row.append(lbl, dInp, muted1, fSel);
+              if (S.phases.length > 1) {
+                const rmBtn = el('button', 'btn btn-sm btn-danger');
+                rmBtn.textContent = '✕';
+                rmBtn.onclick = () => {
+                  S.phases.splice(i, 1);renderPhases();
+                };
+                row.appendChild(rmBtn);
+              }
+              phasesList.appendChild(row);
+            });
+          }
+          renderPhases();
+          const addPhaseBtn = el('button', 'btn btn-sm', {
+            style: 'margin-top:6px'
+          });
+          addPhaseBtn.textContent = '+ Добавить фазу';
+          addPhaseBtn.onclick = () => {
+            S.phases.push({
+              d: 7,
+              f: 1
+            });renderPhases();
+          };
+          taperBox.appendChild(addPhaseBtn);
+          configArea.appendChild(taperBox);
+        }
+        const errDiv = el('div', 'error', {
+          style: 'display:none'
+        });
+        configArea.appendChild(errDiv);
+        const addBtn = el('button', 'btn btn-primary', {
+          style: 'margin-top:12px;width:100%'
+        });
+        addBtn.textContent = 'Добавить в схему';
+        addBtn.onclick = () => {
+          if (S.meds.find(m => m.name === S.selectedMed.name)) {
+            errDiv.textContent = 'Этот препарат уже в схеме';
+            errDiv.style.display = 'block';
+            return;
+          }
+          const taper = !!S._cfgTaper;
+          S.meds.push({
+            name: S.selectedMed.name,
+            eye: S._cfgEye || 'both',
+            freq: +freqSel.value || 3,
+            dur: +durInput.value || 14,
+            taper,
+            phases: taper ? [...S.phases] : []
+          });
+          S.selectedMed = null;
+          S._searchQuery = '';
+          S._cfgEye = 'both';S._cfgFreq = 3;S._cfgDur = 14;
+          S._cfgTaper = false;S.phases = [{
+            d: 7,
+            f: 3
+          }, {
+            d: 7,
+            f: 2
+          }, {
+            d: 7,
+            f: 1
+          }];
+          render();
+        };
+        configArea.appendChild(addBtn);
+      }
+      if (S.selectedMed) renderConfig();
+      // Список препаратов
+      if (S.meds.length > 0) {
+        const listCard = el('div', 'card');
+        listCard.innerHTML = `<h3 style="margin-bottom:12px">Ваша схема лечения</h3>`;
+        const curAbbrs = buildAbbrs(S.meds);
+        S.meds.forEach((m, i) => {
+          const row = el('div', 'med-row');
+          const eyeStr = m.eye === 'both' ? 'Оба глаза' : m.eye === 'right' ? 'Правый глаз' : 'Левый глаз';
+          let schedStr = m.taper ? m.phases.map((p, pi) => `Фаза ${pi+1}: ${p.d} дн × ${p.f}×`).join(' → ') : `${m.freq}×/день, ${m.dur} дней`;
+          const info = el('div');
+          info.innerHTML = `
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+          <span class="abbr-badge">${curAbbrs[i]}</span>
+          <span style="font-weight:600">${m.name}</span>
+          <span class="muted" style="font-size:12px">— ${eyeStr}</span>
+        </div>
+        <div class="muted" style="font-size:12.5px">${schedStr}</div>`;
+          const rmBtn = el('button', 'btn btn-sm btn-danger');
+          rmBtn.textContent = 'Удалить';
+          rmBtn.onclick = () => {
+            S.meds.splice(i, 1);render();
+          };
+          row.append(info, rmBtn);
+          listCard.appendChild(row);
+        });
+        const sep = el('div', 'sep');
+        listCard.appendChild(sep);
+        const meta = el('div', '', {
+          style: 'display:grid;grid-template-columns:1fr auto;gap:12px;margin-bottom:14px'
+        });
+        const patInp = el('input');
+        patInp.placeholder = 'ФИО пациента (необязательно)';
+        patInp.value = S.patient;
+        patInp.oninput = (e) => {
+          S.patient = e.target.value;
+        };
+        const dateInp = el('input');
+        dateInp.type = 'date';
+        dateInp.value = S.startDate;
+        dateInp.style.width = '160px';
+        dateInp.oninput = (e) => {
+          S.startDate = e.target.value;
+        };
+        meta.append(patInp, dateInp);
+        listCard.appendChild(meta);
+        const btns = el('div', '', {
+          style: 'display:flex;gap:10px;flex-wrap:wrap'
+        });
+        const genBtn = el('button', 'btn btn-primary');
+        genBtn.textContent = 'Создать таблицу →';
+        genBtn.onclick = () => {
+          S.view = 'checklist';render();
+        };
+        const savePresetBtn = el('button', 'btn');
+        savePresetBtn.innerHTML = '💾 Сохранить как план';
+        savePresetBtn.onclick = () => {
+          if (S.meds.length === 0) return alert('Добавьте хотя бы один препарат');
+          const name = prompt('Название плана лечения:', 'Мой план ' + new Date().toLocaleDateString('ru-RU'));
+          if (!name || !name.trim()) return;
+          const presetMeds = S.meds.map(m => ({
+            name: m.name,
+            eye: m.eye,
+            freq: m.freq,
+            dur: m.dur,
+            taper: m.taper,
+            phases: m.taper ? [...m.phases] : []
+          }));
+          CUSTOM_PRESETS.push({
+            label: name.trim(),
+            meds: presetMeds
+          });
+          saveCustomData();
+          render();
+          alert('✅ План сохранён в «Мои планы»');
+        };
+        const clrBtn = el('button', 'btn');
+        clrBtn.textContent = 'Очистить всё';
+        clrBtn.onclick = () => {
+          if (confirm('Очистить всю схему?')) {
+            S.meds = [];
+            render();
+          }
+        };
+        btns.append(genBtn, savePresetBtn, clrBtn);
+        listCard.appendChild(btns);
+        left.appendChild(listCard);
+      }
+      layout.appendChild(left);
+      // Правая колонка
+      const right = el('div', '', {
+        style: 'display:flex;flex-direction:column;gap:20px'
+      });
+      // Готовые схемы
+      const preCard = el('div', 'card');
+      preCard.innerHTML = `<h3 style="margin-bottom:16px">Готовые схемы</h3>`;
+      BUILTIN_PRESETS.forEach(p => {
+        const btn = el('button', 'btn', {
+          style: `
+      width:100%; 
+      display:flex; 
+      align-items:center; 
+      justify-content:space-between; 
+      text-align:left; 
+      margin-bottom:8px; 
+      padding:14px 18px;
+      font-size:14.5px;
+    `
+        });
+        const count = p.meds.length;
+        btn.innerHTML = `
+    <span style="font-weight:600; flex:1;">${p.label}</span>
+    <span style="
+      background:#dbeafe; 
+      color:#1e40af; 
+      font-size:13px; 
+      font-weight:600; 
+      padding:4px 12px; 
+      border-radius:9999px; 
+      white-space:nowrap;
+      min-width:68px; 
+      text-align:center;
+    ">${count} препарата</span>
+  `;
+        btn.onclick = () => {
+          S.meds = p.meds.map(m => ({...m,
+            phases: [...(m.phases || [])]
+          }));
+          render();
+        };
+        preCard.appendChild(btn);
+      });
+      if (CUSTOM_PRESETS.length > 0) {
+        const sep = el('div', 'sep');
+        preCard.appendChild(sep);
+        const myTitle = el('div', '', {
+          style: 'font-size:13px;font-weight:600;color:var(--muted);margin-bottom:8px'
+        });
+        myTitle.textContent = 'Мои планы';
+        preCard.appendChild(myTitle);
+        CUSTOM_PRESETS.forEach((p, idx) => {
+          const btn = el('button', 'btn', {
+            style: 'width:100%;justify-content:space-between;margin-bottom:8px'
+          });
+          const labelSpan = el('span');labelSpan.textContent = p.label;
+          const metaSpan = el('span', 'muted', {
+            style: 'font-size:13px;display:flex;align-items:center;gap:8px'
+          });
+          metaSpan.innerHTML = `${p.meds.length} пр. <span onclick="event.stopImmediatePropagation();deleteCustomPreset(${idx});" style="color:#ef4444;cursor:pointer;font-size:18px;line-height:1">🗑</span>`;
+          btn.append(labelSpan, metaSpan);
+          btn.onclick = (e) => {
+            if (e.target.tagName === 'SPAN' && e.target.style.color) return;S.meds = p.meds.map(m => ({...m,
+              phases: m.phases ? [...m.phases] : []
+            }));render();
+          };
+          preCard.appendChild(btn);
+        });
+      }
+      right.appendChild(preCard);
+      // Мои препараты
+      const myMedsCard = el('div', 'card');
+      myMedsCard.innerHTML = `<h3 style="margin-bottom:12px">Мои препараты <span style="font-size:12px;color:var(--muted)">(${CUSTOM_MEDS.length})</span></h3>`;
+      const addMedBtn = el('button', 'btn btn-primary', {
+        style: 'width:100%;margin-bottom:14px'
+      });
+      addMedBtn.textContent = '+ Добавить свой препарат';
+      addMedBtn.onclick = showAddMedModal;
+      myMedsCard.appendChild(addMedBtn);
+      if (CUSTOM_MEDS.length > 0) {
+        const medsList = el('div');
+        CUSTOM_MEDS.forEach((m, i) => {
+          const row = el('div', 'med-row', {
+            style: 'padding:8px 0'
+          });
+          row.innerHTML = `
+        <div style="display:flex;align-items:center;gap:8px">
+          <span class="abbr-badge">${m.hint}</span>
+          <span style="font-weight:600">${m.name}</span>
+          <span class="tag tag-cat">${m.cat}</span>
+        </div>`;
+          const delBtn = el('button', 'btn btn-sm btn-danger');
+          delBtn.textContent = '🗑';
+          delBtn.onclick = (e) => {
+            e.stopImmediatePropagation();
+            if (confirm('Удалить препарат «' + m.name + '»?')) {
+              CUSTOM_MEDS.splice(i, 1);
+              saveCustomData();
+              render();
+            }
+          };
+          row.appendChild(delBtn);
+          medsList.appendChild(row);
+        });
+        myMedsCard.appendChild(medsList);
+      } else {
+        const empty = el('div', 'muted', {
+          style: 'text-align:center;padding:20px 0;font-size:13px'
+        });
+        empty.textContent = 'Здесь будут ваши личные препараты';
+        myMedsCard.appendChild(empty);
+      }
+      right.appendChild(myMedsCard);
+      // Правила
+      const rulesCard = el('div', 'card', {
+        style: 'background:#f8fafc;border:none'
+      });
+      rulesCard.innerHTML = `<div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:var(--muted);margin-bottom:10px">Как работает расписание</div>
+  <div style="display:flex;flex-direction:column;gap:6px;font-size:13px">
+    <div style="display:flex;gap:8px"><span style="font-family:monospace;font-weight:700;min-width:32px">1×</span><span class="muted">Только утром</span></div>
+    <div style="display:flex;gap:8px"><span style="font-family:monospace;font-weight:700;min-width:32px">2×</span><span class="muted">Утро + Вечер</span></div>
+    <div style="display:flex;gap:8px"><span style="font-family:monospace;font-weight:700;min-width:32px">3×</span><span class="muted">Утро + День + Вечер</span></div>
+    <div style="display:flex;gap:8px"><span style="font-family:monospace;font-weight:700;min-width:32px">4×+</span><span class="muted">Равномерно в течение дня</span></div>
+  </div>`;
+      right.appendChild(rulesCard);
+      layout.appendChild(right);
+      app.appendChild(layout);
+    }
+
+function renderChecklist(app) {
+  const abbrs = buildAbbrs(S.meds);
+  const startDate = new Date(S.startDate);
+  
+  // Панель управления
+  const topBar = el('div', 'no-print', {
+    style: 'display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap'
+  });
+  const backBtn = el('button', 'btn');
+  backBtn.innerHTML = '← Назад к конструктору';
+  backBtn.onclick = () => { S.view = 'builder'; render(); };
+  
+  const copyBtn = el('button', 'btn', {
+    style: 'background:#10b981;color:white;border-color:#10b981'
+  });
+  copyBtn.innerHTML = '📋 Скопировать назначение';
+  copyBtn.onclick = () => copyPrescriptionToClipboard();
+  
+  const printBtn = el('button', 'btn btn-primary');
+  printBtn.innerHTML = '🖨️ Печать / PDF';
+  printBtn.onclick = () => window.print();
+  
+  topBar.append(backBtn, copyBtn, printBtn);
+  app.appendChild(topBar);
+  
+  const printArea = el('div', '', { id: 'print-area' });
+  
+  // ====================== ШАПКА + ЛЕГЕНДА ======================
+  const headerBlock = el('div', '', { style: 'margin-bottom:24px' });
+  const titleRow = el('div', '', {
+    style: 'display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:12px;border-bottom:3px solid var(--blue)'
+  });
+  
+  const tLeft = el('div');
+  // 🔧 ИСПРАВЛЕННЫЙ БЛОК — шаблонная строка должна быть цельной:
+  tLeft.innerHTML = `<h2 style="font-size:19px;margin:0">Схема закапывания глазных капель</h2>` +
+    (S.patient ? `<div style="font-size:14px;margin-top:6px">Пациент: <strong>${S.patient}</strong></div>` : '');
+  
+  const tRight = el('div', 'muted', { style: 'font-size:13px;text-align:right' });
+  tRight.innerHTML = `Дата начала: <strong>${fmtDate(S.startDate)}</strong>`;
+  
+  titleRow.append(tLeft, tRight);
+  headerBlock.appendChild(titleRow);
+  
+  // ====================== ЛЕГЕНДА ======================
+  const legendBox = el('div', '', {
+    style: 'background:var(--blue-light);border-radius:var(--radius-lg);padding:18px;margin-top:16px'
+  });
+  legendBox.innerHTML = `<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--blue);margin-bottom:12px">Обозначения препаратов</div>`;
+  
+  const cats = {};
+  S.meds.forEach((m, i) => {
+    const medData = getAllMeds().find(d => d.name === m.name);
+    const c = medData ? medData.cat : 'Прочее';
+    if (!cats[c]) cats[c] = [];
+    cats[c].push({ ...m, abbr: abbrs[i] });
+  });
+  
+  const lgGrid = el('div', 'legend-grid');
+  Object.entries(cats).forEach(([cat, items]) => {
+    const col = el('div', 'legend-cat');
+    col.innerHTML = `<h4 style="margin-bottom:8px">${cat}</h4>`;
+    items.forEach(m => {
+      const oc = m.eye === 'both' ? 'ОГ' : m.eye === 'right' ? 'ПГ' : 'ЛГ';
+      const row = el('div', 'legend-row');
+      row.innerHTML = `<span class="abbr-badge">${m.abbr}</span><span style="font-size:14px">${m.name}</span><span class="muted" style="font-size:12px">${oc}</span>`;
+      col.appendChild(row);
+    });
+    lgGrid.appendChild(col);
+  });
+  legendBox.appendChild(lgGrid);
+  
+  const legendNote = el('div', '', { style: 'margin-top:14px;font-size:12px;color:var(--muted)' });
+  legendNote.textContent = 'ОГ — оба глаза · ПГ — правый глаз · ЛГ — левый глаз';
+  legendBox.appendChild(legendNote);
+  
+  headerBlock.appendChild(legendBox);
+  printArea.appendChild(headerBlock);
+  app.appendChild(printArea);
+      // Таблица
+      const {
+        rows,
+        slots
+      } = buildGrid(S.meds, abbrs);
+      const wrap = el('div', 'checklist-wrap');
+      const table = el('table', 'checklist');
+      table.style.tableLayout = 'fixed';
+      table.style.width = '100%';
+      const cg = document.createElement('colgroup');
+      const c0 = document.createElement('col');
+      c0.style.width = '92px';
+      cg.appendChild(c0);
+      slots.forEach(() => {
+        const c = document.createElement('col');
+        c.style.width = Math.floor(90 / slots.length) + '%';
+        cg.appendChild(c);
+      });
+      table.appendChild(cg);
+      const thead = document.createElement('thead');
+      const hr = document.createElement('tr');
+      const th0 = document.createElement('th');
+      th0.className = 'day-th';
+      th0.textContent = 'День / Дата';
+      hr.appendChild(th0);
+      slots.forEach(s => {
+        const th = document.createElement('th');
+        th.textContent = s;
+        hr.appendChild(th);
+      });
+      thead.appendChild(hr);
+      table.appendChild(thead);
+      const tbody = document.createElement('tbody');
+      rows.forEach(row => {
+        const tr = document.createElement('tr');
+        tr.style.pageBreakInside = 'auto';
+        const td0 = document.createElement('td');
+        td0.style.fontWeight = '700';
+        td0.style.padding = '10px 8px';
+        const currentDate = new Date(startDate);
+        currentDate.setDate(startDate.getDate() + row.day - 1);
+        td0.innerHTML = `
+      <div style="font-size:15px">${row.day}</div>
+      <div style="font-size:12.5px;color:#64748b">${fmtDate(currentDate.toISOString().slice(0,10))}</div>
+    `;
+        tr.appendChild(td0);
+        slots.forEach(s => {
+          const td = document.createElement('td');
+          const items = row.cells[s];
+          if (items && items.length > 0) {
+            const container = el('div', '', {
+              style: 'display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-start'
+            });
+            items.forEach(label => {
+              const pill = el('span', '', {
+                style: `
+            background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px;
+            padding:5px 9px; font-size:13px; font-weight:600;
+            display:inline-flex; align-items:center; gap:5px;
+            min-width:48px; justify-content:flex-start;
+          `
+              });
+              pill.innerHTML = `<span class="checkbox-sq" style="width:17px;height:17px"></span> ${label}`;
+              container.appendChild(pill);
+            });
+            td.appendChild(container);
+          } else {
+            td.innerHTML = '<span class="dash" style="color:#cbd5e1;font-size:16px">—</span>';
+          }
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody);
+      wrap.appendChild(table);
+      printArea.appendChild(wrap);
+      // Инструкция
+      const note = el('div', '', {
+        style: 'margin-top:30px;padding-top:16px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)'
+      });
+      note.innerHTML = '<strong>Инструкция:</strong> Закапывайте по 1 капле на каждый приём. Между разными препаратами — интервал 5–10 минут. Отмечайте галочкой каждый приём.';
+      printArea.appendChild(note);
+      app.appendChild(printArea);
+    }
+    // ==================== ФУНКЦИЯ КОПИРОВАНИЯ ====================
+    function copyPrescriptionToClipboard() {
+      let text = '';
+      if (S.patient) text += `Пациент: ${S.patient}\n`;
+      text += `Дата начала: ${fmtDate(S.startDate)}\n\n`;
+      text += `Схема закапывания глазных капель:\n\n`;
+      S.meds.forEach((med, i) => {
+        const eyeStr = med.eye === 'both' ? 'оба глаза' : med.eye === 'right' ? 'правый глаз' : 'левый глаз';
+        let schedule = med.taper ? med.phases.map((p, idx) => `Фаза ${idx+1}: ${p.d} дней × ${p.f} раз/день`).join(' → ') : `${med.freq} раз/день, ${med.dur} дней`;
+        text += `${i+1}. ${med.name} — ${eyeStr}\n`;
+        text += `   ${schedule}\n\n`;
+      });
+      text += `Инструкция:\n`;
+      text += `• Закапывать по 1 капле в каждый указанный приём\n`;
+      text += `• Между разными препаратами — интервал 5–10 минут\n`;
+      text += `• Отмечайте каждый приём в таблице\n`;
+      navigator.clipboard.writeText(text.trim()).then(() => {
+        const btns = document.querySelectorAll('button');
+        const copyBtn = Array.from(btns).find(b => b.textContent.includes('Скопировать'));
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.innerHTML = '✅ Скопировано!';
+          setTimeout(() => {
+            copyBtn.innerHTML = original;
+          }, 2000);
+        }
+      }).catch(() => {
+        alert('Не удалось скопировать текст');
+      });
+    }
+    // ── Запуск ───────────────────────────────────────────────────────────
+    initCustomData();
+    loadSession();
+    render();
+  </script>
+</body>
+
+</html>
